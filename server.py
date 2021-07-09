@@ -4,7 +4,7 @@ app = Flask(__name__)    # Create a new instance of the Flask class called "app"
 
 @app.route('/')  # The "@" decorator associates this route with the function immediately following  
 def hello_world():
-    return render_template('index.html')  # Return the string 'Hello World!' as a response
+    return render_template('index.html', phrase='hello', times=5)
 
 
 @app.route('/success')
@@ -22,11 +22,11 @@ def say(name):
     return f'Hi {str(name)}!'
 
 
-@app.route('/repeat/<num>/<word>')
+@app.route('/repeat/<int:num>/<string:word>')
 def repeat(num,word):
     something= ''
-    for i in range(0,int(num)):
-        something += f'{str(word)} '
+    for i in range(0,num):
+        something += f'{word} '
     return something
 
 
